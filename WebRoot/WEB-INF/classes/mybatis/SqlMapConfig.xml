@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		 -->
 		<typeAliases>
 			<!-- 批量别名（常用） -->
-			<package name="com.decorate.po"/>
+			<package name="com.decorate.ssm.po"/>
 		</typeAliases>
 		<!-- 加载映射文件
 			使用spring和mybatis的整合包进行加载，不需要配置mapper文件

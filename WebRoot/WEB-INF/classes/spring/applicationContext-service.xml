@@ -15,6 +15,6 @@
 		http://www.springframework.org/schema/aop
 		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	<!-- 定义商品管理的service -->
-	<bean id="itemsService" class="com.mpf.service.impl.ItemsServiceImpl"></bean>
+	<!-- <bean id="itemsService" class="com.mpf.service.impl.ItemsServiceImpl"></bean> -->
 	
 </beans>
