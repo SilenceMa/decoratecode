@@ -39,12 +39,11 @@
 
 	
 	<!-- mapper的批量扫描进行mapper文件的配置，从mapper包中扫描mapper接口，自动创建代理对象并在spring容器中进行注册
-		自动扫描之后，bean的id为mapper类名的首字母小写
-		如果扫描多个包，用逗号隔开
+		自动扫描之后，bean的id为mapper类名的首字母小写,如果扫描多个包，用逗号隔开
 	 -->
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.mpf.mapper"></property>
+		<property name="basePackage" value="com.decorate.mapper"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 	
