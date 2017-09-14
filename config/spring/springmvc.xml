@@ -17,7 +17,7 @@
 		<!-- 实际开发中使用组件扫描
 			扫描com.mpf.ssm包下的controller接口
 		 -->
-		<context:component-scan base-package="com.mpf.controller"></context:component-scan>
+		<context:component-scan base-package="com.decorate.ssm.controller"></context:component-scan>
 		<!-- 静态资源解析
 			包括：js,css,img...
 		 -->
@@ -37,11 +37,11 @@
 		 	<property name="suffix" value=".jsp"></property>
 		 </bean>
 		 
-		 <!-- 自定义参数绑定 -->
+		 <!-- 自定义参数绑定 ,将日期类型转换为其他类型-->
 		 <bean id="conversionService1" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		 	<property name="converters">
 		 		<list>
-		 			<bean class="com.mpf.utils.CustomDateConvert"></bean>
+		 			<bean class="com.decorate.ssm.utils.DateConvert"></bean>
 		 		</list>
 		 	</property>
 		 </bean>
@@ -52,6 +52,7 @@
 		<!-- 指定校验使用的资源文件，如果不指定则默认使用classpath下的ValidationMessages.properties -->
 		<property name="validationMessageSource" ref="messageSource"></property>
 	</bean>
+	
 	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
        校验器
        <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
@@ -76,7 +77,7 @@
     </bean>
 
 	<!-- 全局异常处理器 -->
-   	<bean class="com.mpf.exception.CustomExceptionResolver"/>
+   	<bean class="com.decorate.ssm.interceptor.MyInterceptor"/>
    	
    	<!-- multipart解析器 -->
    	<bean id="multipartResolver"
@@ -93,15 +94,7 @@
 	   <!--  多个拦截器,顺序执行 -->
 	    <mvc:interceptor>
 	       <mvc:mapping path="/**"/>
-	       <bean class="com.mpf.interceptor.HandlerInterceptor1"></bean>
-	    </mvc:interceptor>
-	    <mvc:interceptor>
-	       <mvc:mapping path="/**"/>
-	       <bean class="com.mpf.interceptor.HandlerInterceptor2"></bean>
-	    </mvc:interceptor>
-	    <mvc:interceptor>
-	       <mvc:mapping path="/**"/>
-	       <bean class="com.mpf.interceptor.LoginInterceptor"></bean>
+	       <bean class="com.decorate.ssm.interceptor.MyInterceptor"></bean>
 	    </mvc:interceptor>
 	</mvc:interceptors>
 </beans>

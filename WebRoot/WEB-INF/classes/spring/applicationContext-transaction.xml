@@ -37,8 +37,8 @@
 			<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
-	
+	<!-- 开启事物控制 -->
 	<aop:config>
-		<!-- <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.mpf.service.impl.*.*(..))"/> -->
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.decorate.ssm.serviceImpl.*.*(..))"/>
 	</aop:config>
 </beans>

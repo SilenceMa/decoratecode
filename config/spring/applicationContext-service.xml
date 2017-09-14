@@ -14,7 +14,7 @@
 		http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/aop
 		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-	<!-- 定义商品管理的service -->
-	<!-- <bean id="itemsService" class="com.mpf.service.impl.ItemsServiceImpl"></bean> -->
+	<!-- 登录界面的service -->
+	<bean id="loginService" class="com.decorate.ssm.serviceImpl.LoginServiceImpl"></bean>
 	
 </beans>
