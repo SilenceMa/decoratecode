@@ -26,6 +26,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		document.mainForm.action = "${pageContext.request.contextPath}/main/deleteUserById.action";
 		document.mainForm.submit();
 		}
+		function updateUser(){
+		document.mainForm.action = "${pageContext.request.contextPath}/main/updateUserById.action";
+		document.mainForm.submint();
+		}
+		function addUser(){
+		window.location.href = "${pageContext.request.contextPath}/addUser.jsp";
+		}
 	</script>
   </head>
   
@@ -37,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>
 						用户名：<input type="text" name="userCustom.userName">
 						<input type="submit" value="查询" onclick="queryUser()">
-						<input type="button" value="删除" onclick="deleteUser()">
+						<input type="button" value="添加用户" onclick="addUser()">
 						<input type="button" value="批量删除" onclick="">
 					</td>
 				</tr>
@@ -60,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td>${user.password}</td>
 						<td>${user.phone}</td>
 						<td>${user.userEmail}</td>
-						<td><a href="${pageContext.request.contextPath}/main/updateUser.action?id=${user.id}">修改</a>
+						<td><a href="${pageContext.request.contextPath}/main/editUser.action?id=${user.id}">修改</a>
 						<a href="${pageContext.request.contextPath}/main/deleteUserById.action?id=${user.id}">删除</a></td>
 						</tr>
 				</c:forEach>

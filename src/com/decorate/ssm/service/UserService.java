@@ -49,4 +49,11 @@ public interface UserService {
 	 * @param 用户信息
 	 */
 	public void addUser(User user) throws Exception;
+	
+	/**
+	 * 
+	 * @param id 从主界面传递过来的用户id
+	 * @throws Exception
+	 */
+	public UserCustom findUserById(Integer id) throws Exception;
 }

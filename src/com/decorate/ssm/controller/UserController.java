@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,7 +41,7 @@ public class UserController {
 	
 	//根据id删除用户信息
 	@RequestMapping("/deleteUserById")
-	public String deleteUserById(@RequestParam(value="id",required = true,defaultValue="1") Integer user_id) throws Exception{
+	public String deleteUserById(@RequestParam(value="id",required = true,defaultValue="0") Integer user_id) throws Exception{
 		try {
 			userService.deleteUser(user_id);
 		} catch (Exception e) {
@@ -60,12 +61,24 @@ public class UserController {
 	@RequestMapping("/addUser")
 	public String addUser(User user) throws Exception{
 		userService.addUser(user);
-		return "";
+		return "/success";
+	}
+	
+	//根据id查询用户信息
+	@RequestMapping("editUser")
+	public String editUser(Model model ,Integer id) throws Exception{
+		UserCustom userCustom = null;
+		if (id!=null) {
+		userCustom = userService.findUserById(id);
+		model.addAttribute("userCustom", userCustom);
+		}
+		return "/main/editUser";
 	}
 	
 	//根据用户id修改用户信息
 	@RequestMapping("/updateUserById")
-	public String updateUserById() throws Exception{
-		return "";
+	public String updateUserById(Integer id,UserCustom userCustom) throws Exception{
+		userService.updateUser(id, userCustom);
+		return "/success";
 	}
 }

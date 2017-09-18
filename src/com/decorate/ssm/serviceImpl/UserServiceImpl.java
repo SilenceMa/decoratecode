@@ -2,6 +2,7 @@ package com.decorate.ssm.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.decorate.ssm.mapper.UserListMapper;
@@ -46,6 +47,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void updateUser(Integer id, UserCustom userCustom) throws Exception {
 		
+		if (userCustom != null && id != null) {
+			userCustom.setId(id);
+			int count = userMapper.updateByPrimaryKey(userCustom);
+			System.out.println("成功修改了" +count +"个用户的信息");
+		}
+		
 	}
 
 	/**
@@ -57,6 +64,18 @@ public class UserServiceImpl implements UserService{
 			int count = userMapper.insert(user);
 			System.out.println("成功插入" + count + "个用户");
 		}
+	}
+
+	/**
+	 * 根据id查询用户信息
+	 */
+	@Override
+	public UserCustom findUserById(Integer id) throws Exception {
+		User user = userMapper.selectByPrimaryKey(id);
+		UserCustom userCustom = new UserCustom();
+		BeanUtils.copyProperties(user, userCustom);
+		return userCustom;
+		
 	}
 
 }
