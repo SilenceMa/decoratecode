@@ -3,7 +3,8 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -17,31 +18,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<script type="text/javascript">
 		function queryUser(){
-			//提交form
-		document.itemsForm.action = "${pageContext.request.contextPath }/items/deleteItems.action";
-		document.itemsForm.submit();
-		
-		document.mainForm.action = "${pageContext.request.contextPath}/"
+		//提交查询用户的form表单
+		document.mainForm.action = "${pageContext.request.contextPath }/main/queryUser.action";
+		document.mainForm.submit();
 		}
-	
+		function deleteUser(){
+		document.mainForm.action = "${pageContext.request.contextPath}/main/deleteUserById.action";
+		document.mainForm.submit();
+		}
 	</script>
   </head>
   
   <body>
 	<h1>主界面</h1>
-	<form name="mainForm" action=""  method="post">
+	<form name="mainForm" action="${pageContext.request.contextPath}/main/queryUser.action"  method="get">
 		查询条件：<table width="100%" border="1">
 				<tr>
 					<td>
-						用户名：<input type="text" name="">
-						<input type="button" value="查询" onclick="">
-						<input type="button" value="删除" onclick="">
+						用户名：<input type="text" name="userCustom.userName">
+						<input type="submit" value="查询" onclick="queryUser()">
+						<input type="button" value="删除" onclick="deleteUser()">
 						<input type="button" value="批量删除" onclick="">
 					</td>
 				</tr>
 		</table>
-		用户列表：<table>
-		
+		用户列表：<table width="100%" border="1">
+				<tr>
+					<td>选择</td>
+					<td>用户id</td>
+					<td>用户名</td>
+					<td>密码</td>
+					<td>电话</td>
+					<td>邮箱</td>
+					<td>操作</td>
+				</tr>
+				<c:forEach items="${userList }" var="user">
+					<tr>
+						<td><input type="checkbox" name="id" value="${user.id}"></td>
+						<td>${user.id}</td>
+						<td>${user.userName}</td>
+						<td>${user.password}</td>
+						<td>${user.phone}</td>
+						<td>${user.userEmail}</td>
+						<td><a href="${pageContext.request.contextPath}/main/updateUser.action?id=${user.id}">修改</a>
+						<a href="${pageContext.request.contextPath}/main/deleteUserById.action?id=${user.id}">删除</a></td>
+						</tr>
+				</c:forEach>
+				
 		</table>
 	</form>
   </body>

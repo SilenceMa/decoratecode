@@ -16,5 +16,6 @@
 		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	<!-- 登录界面的service -->
 	<bean id="loginService" class="com.decorate.ssm.serviceImpl.LoginServiceImpl"></bean>
+	<bean id="userService" class="com.decorate.ssm.serviceImpl.UserServiceImpl"></bean>
 	
 </beans>

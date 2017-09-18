@@ -36,7 +36,7 @@ public class LoginController {
 
 		if (isToLogin == 1) {
 			session.setAttribute("phone", phone);
-			return "redirect:/items/main.action";
+			return "redirect:/main/queryUser.action";
 		}
 
 		return "/login";
